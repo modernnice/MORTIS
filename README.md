@@ -1,4 +1,5 @@
 # 🎬 MORTIS视频中文AI翻配系统
+https://i0.hdslb.com/bfs/new_dyn/609d1431c1afafb03e58bfa7bab33e98328979125.jpg![Uploading image.png…]()
 
 **Multimodal Oral Real-time TTS Intelligent Synthesis**
 
