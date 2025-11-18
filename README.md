@@ -63,9 +63,15 @@ uv sync
 
 AI 模型的权重文件需要手动下载并放置到指定位置，否则程序将静默卡死或报错：
 
-- **voice_filter 模型**：首次运行时会自动尝试下载 `model_bs_roformer_ep_317_sdr_12.9755.ckpt` 到 `voice_filter/data/audio-separator-models/`。如果下载失败，请手动下载后放置此处。
+- **voice_filter 模型**：首次运行时会自动尝试在./MORTIS/voice_filter/data/audio-separator-models目录下下载 `download_checks.json` `model_bs_roformer_ep_317_sdr_12.9755.ckpt` `model_bs_roformer_ep_317_sdr_12.9755.ckpt` 到 `model_bs_roformer_ep_317_sdr_12.9755.yaml`。如果下载失败，请自行搜索相关文件并手动下载后放置此处。
 
 - **voice_clone_video_synthesis 模型**：
+  - 在voice_clone_video_synthesis目录下运行
+```bash
+uv tool install "huggingface-hub[cli,hf_xet]"
+
+hf download IndexTeam/IndexTTS-2 --local-dir=checkpoints
+```
   - 将 `config.yaml` 放置在：`voice_clone_video_synthesis/checkpoints/`
   - 将大型模型权重文件（通常是 `.pth` 或 `.ckpt` 文件）放置在：`voice_clone_video_synthesis/checkpoints/`
 
