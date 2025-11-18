@@ -46,6 +46,8 @@
 请确保两个子项目都已安装了各自的依赖环境 (`.venv`)。推荐使用 `uv` 工具进行快速环境管理：
 
 ```bash
+# 安装gradio
+pip install gradio
 # 激活 voice_filter 环境
 cd ./MORTIS/voice_filter/
 uv venv
@@ -63,17 +65,33 @@ uv sync
 
 AI 模型的权重文件需要手动下载并放置到指定位置，否则程序将静默卡死或报错：
 
-- **voice_filter 模型**：首次运行时会自动尝试在./MORTIS/voice_filter/data/audio-separator-models目录下下载 `download_checks.json` `model_bs_roformer_ep_317_sdr_12.9755.ckpt` `model_bs_roformer_ep_317_sdr_12.9755.ckpt` 到 `model_bs_roformer_ep_317_sdr_12.9755.yaml`。如果下载失败，请自行搜索相关文件并手动下载后放置此处。
+- **voice_filter 模型**：首次运行时会自动尝试在./MORTIS/voice_filter/data/audio-separator-models目录下下载 `download_checks.json` `model_bs_roformer_ep_317_sdr_12.9755.ckpt` `model_bs_roformer_ep_317_sdr_12.9755.ckpt` 到 `model_bs_roformer_ep_317_sdr_12.9755.yaml`。如果有网速问题或者下载失败，请自行搜索相关文件并手动下载后放置此处。
 
 - **voice_clone_video_synthesis 模型**：
-  - 在voice_clone_video_synthesis目录下运行
+
+在voice_clone_video_synthesis目录下运行：
+
 ```bash
 uv tool install "huggingface-hub[cli,hf_xet]"
 
 hf download IndexTeam/IndexTTS-2 --local-dir=checkpoints
 ```
-  - 将 `config.yaml` 放置在：`voice_clone_video_synthesis/checkpoints/`
-  - 将大型模型权重文件（通常是 `.pth` 或 `.ckpt` 文件）放置在：`voice_clone_video_synthesis/checkpoints/`
+会尝试在voice_clone_video_synthesis目录下创建一个checkpoints文件夹，其中包含`config.yaml` 和将大型模型权重文件（通常是 `.pth` 或 `.pt` 文件）。如果有网速问题或者下载失败，请自行搜索IndexTeam/IndexTTS-2项目文件并手动下载后放置此处。
+
+- **.hf_cache 问题**：
+
+如果你运行到：
+```bash
+- loading tts2...
+GPT2InferenceModel has generative capabilities, as `prepare_inputs_for_generation` is explicitly overwritten. However, it doesn't directly inherit from `GenerationMixin`. From 👉v4.50👈 onwards, `PreTrainedModel` will NOT inherit from `GenerationMixin`, and this model will lose the ability to call `generate` and other related functions.
+- If you're using `trust_remote_code=True`, you can get rid of this warning by loading the model with an auto class. See https://huggingface.co/docs/transformers/en/model_doc/auto#auto-classes
+- If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).
+- If you are not the owner of the model architecture class, please contact the model code owner to update it.
+```
+这一步后终端无响应，你可以观察到在voice_clone_video_synthesis目录下创建了.hf_cache文件夹，其中正在下载其他依赖的模型文件。无响应的原因同样是下载速度过慢导致。请尝试更换网络或者在voice_clone_video_synthesis目录下先单独运行voice_clone_video_synthesis项目尝试下载：
+```bash
+uv run main.py -v ./data/测试纯人声.wav -s ./data/测试字幕.json -b ./data/测试背景音.wav -o ./data/输出混音.wav -t ./tmp -c ./checkpoints/config.yaml -m ./checkpoints
+```
 
 ### 4. 启动应用
 
