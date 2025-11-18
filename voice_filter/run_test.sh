@@ -1,0 +1,2 @@
+source envs.sh
+uv run main.py --video_path ./data/test.mkv --video_output ./data/test_clean.mp4 --audio_mixed ./data/test_mixed.wav --vocal ./data/test_vocal.wav --background ./data/test_background.wav
