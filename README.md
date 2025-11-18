@@ -66,20 +66,20 @@ uv sync
 
 ### 3. 模型文件准备（关键）
 
-AI 模型的权重文件需要手动下载并放置到指定位置，否则程序将静默卡死或报错：
+AI 模型的权重文件会自动下载，但如果程序出现程序将静默卡死或报错，则需要手动下载并放置到指定位置：
 
-- **voice_filter 模型**：首次运行时会自动尝试在./MORTIS/voice_filter/data/audio-separator-models目录下下载 `download_checks.json` `model_bs_roformer_ep_317_sdr_12.9755.ckpt` `model_bs_roformer_ep_317_sdr_12.9755.ckpt` 到 `model_bs_roformer_ep_317_sdr_12.9755.yaml`。如果有网速问题或者下载失败，请自行搜索相关文件并手动下载后放置此处。
+- **voice_filter 模型**：首次运行时会自动尝试创建./MORTIS/voice_filter/data/audio-separator-models目录并在其中下载 `download_checks.json` `model_bs_roformer_ep_317_sdr_12.9755.ckpt` `model_bs_roformer_ep_317_sdr_12.9755.ckpt` 到 `model_bs_roformer_ep_317_sdr_12.9755.yaml`。如果有网速问题或者下载失败，请自行搜索相关文件并手动下载后放置此处。
 
 - **voice_clone_video_synthesis 模型**：
 
-在voice_clone_video_synthesis目录下运行：
+该模型不会自动下载，你需要提前在voice_clone_video_synthesis目录下运行：
 
 ```bash
 uv tool install "huggingface-hub[cli,hf_xet]"
 
 hf download IndexTeam/IndexTTS-2 --local-dir=checkpoints
 ```
-会尝试在voice_clone_video_synthesis目录下创建一个checkpoints文件夹，其中包含`config.yaml` 和将大型模型权重文件（通常是 `.pth` 或 `.pt` 文件）。如果有网速问题或者下载失败，请自行搜索IndexTeam/IndexTTS-2项目文件并手动下载后放置此处。
+运行完成会自动尝试在voice_clone_video_synthesis目录下创建一个checkpoints文件夹，其中包含`config.yaml` 和将大型模型权重文件（通常是 `.pth` 或 `.pt` 文件）。如果有网速问题或者下载失败，请自行搜索IndexTeam/IndexTTS-2项目文件并手动下载后放置此处。
 
 - **.hf_cache 问题**：
 
@@ -91,7 +91,7 @@ GPT2InferenceModel has generative capabilities, as `prepare_inputs_for_generatio
 - If you are the owner of the model architecture code, please modify your model class such that it inherits from `GenerationMixin` (after `PreTrainedModel`, otherwise you'll get an exception).
 - If you are not the owner of the model architecture class, please contact the model code owner to update it.
 ```
-这一步后终端无响应，你可以观察到在voice_clone_video_synthesis目录下创建了.hf_cache文件夹，其中正在下载其他依赖的模型文件。无响应的原因同样是下载速度过慢导致。请尝试更换网络或者在voice_clone_video_synthesis目录下先单独运行voice_clone_video_synthesis项目尝试下载：
+这一步后终端无响应，你可以观察到在voice_clone_video_synthesis目录下创建了.hf_cache文件夹，其中正在下载其他依赖的模型文件。无响应的原因同样是下载速度过慢导致。请尝试更换网络或者在voice_clone_video_synthesis目录下先单独运行voice_clone_video_synthesis项目尝试下载或者自行下载：
 ```bash
 uv run main.py -v ./data/测试纯人声.wav -s ./data/测试字幕.json -b ./data/测试背景音.wav -o ./data/输出混音.wav -t ./tmp -c ./checkpoints/config.yaml -m ./checkpoints
 ```
@@ -107,7 +107,7 @@ python app.py
 
 ## 📝 使用方法
 
-1. **访问链接**：浏览器打开终端中显示的本地或公共 Gradio 链接。
+1. **访问链接**：浏览器打开终端中显示的本地或公共 Gradio 链接（http://0.0.0.0:7860/）。
 
 2. **上传文件**：
    - 将 **原始视频文件** 上传到第一个输入框。
