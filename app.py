@@ -129,7 +129,7 @@ def run_pipeline(video_file, subtitle_file, progress=gr.Progress()):
     yield log("\n--- 阶段 2/3: 启动 AI 配音合成 (voice_clone_video_synthesis) ---")
 
     cmd2 = (
-        # f"source envs.sh && " 
+        f"source envs.sh && " 
         f"uv run main.py "
         f"-v '{p1_vocal}' "
         f"-s '{input_subtitle_path}' "
