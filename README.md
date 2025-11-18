@@ -34,9 +34,11 @@
 ├── voice_clone_video_synthesis/             # AI 配音模块
 │   ├── checkpoints/                         # **模型权重文件存放目录**
 │   │   ├── config.yaml
-│   │   └── <大型模型权重文件> (e.g., .pth, .ckpt)
+│   │   ├── <大型模型权重文件> (e.g., .pth, .pt)
+│   │   └── 其他文件
 │   ├── envs.sh
-│   └── main.py
+│   ├── main.py
+│   └── ...
 ├── output/                                  # 结果输出目录
 └── app.py                                   # Gradio 主程序
 ```
@@ -48,6 +50,7 @@
 ```bash
 # 安装gradio
 pip install gradio
+
 # 激活 voice_filter 环境
 cd ./MORTIS/voice_filter/
 uv venv
