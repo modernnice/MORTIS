@@ -7,11 +7,8 @@
 
 ## 📺 效果展示
 
-输入视频：
-<video src="./input.mp4" controls width="600"></video>
-
-输出视频：
-<video src="./output.mp4" controls width="600"></video>
+- 输入视频：[input.mp4](./input.mp4)
+- 输出视频：[output.mp4](./output.mp4)
 
 ## ✨ 项目特点
 
