@@ -7,7 +7,7 @@
 
 ## 📺 效果展示
 
-[![MORTIS Demo on Bilibili](https://i0.hdslb.com/bfs/archive/placeholder.jpg)](https://www.bilibili.com/video/BV1boqPBnEKg/?spm_id_from=333.1387.homepage.video_card.click&vd_source=2f1f55806ccea4ecb637462ae5eea9f0)
+[![MORTIS Demo on Bilibili](https://i0.hdslb.com/bfs/archive/d184e4672d922409afb5b7a3be3c1ef3ff1e1b5a.jpg)](https://www.bilibili.com/video/BV1boqPBnEKg/?spm_id_from=333.1387.homepage.video_card.click&vd_source=2f1f55806ccea4ecb637462ae5eea9f0)
 
 ## ✨ 项目特点
 
