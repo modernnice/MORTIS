@@ -8,10 +8,10 @@
 ## 📺 效果展示
 
 输入视频：
-<video src="./input.mp4" controls></video>
+<video src="./input.mp4" controls width="600"></video>
 
 输出视频：
-<video src="./output.mp4" controls></video>
+<video src="./output.mp4" controls width="600"></video>
 
 ## ✨ 项目特点
 
